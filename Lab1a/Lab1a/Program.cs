@@ -19,32 +19,34 @@ namespace Lab1a
             for (int i = 0; i < array.Length; i++) {
                sum += array[i];
             }
+
+            if (sum < 20) {
+
+                throw new Exception($" Value of sum : {sum} is too low ");
+
+            }
             return sum;
 
         }
 
         static int GetProduct(int[]array , int sum) {
+            int product ;
             try
             {
-                int num = 0;
-                Random rnd = new Random();
-                for (int i = 0; i < array.Length; i++) {
+                Console.WriteLine($"Please Enter a number between 1 and {array.Length}");
+                int num = Convert.ToInt32(Console.ReadLine());
 
-                   num  = Convert.ToInt32(rnd.Next(1,array.Length));
-                   
-                 
+                if (num < 1 || num > array.Length)
+                {
+                    throw new ArgumentException("Index out of range");
                 }
-                Console.WriteLine("RAN NUM     " + num);
 
-                // Console.WriteLine("HELLO" + Console.ReadLine());
-                int product = num * sum;
-               // Console.WriteLine(num + " * " + sum + " = " + product);
+                product = sum * num;
                 return product;
-               
             }
             catch (IndexOutOfRangeException e) {
-                Console.WriteLine(e.Message);
-                throw new ArgumentException("Index out of range");
+                 Console.WriteLine(e.Message);
+                return 0;
             }
         }
 
@@ -87,7 +89,7 @@ namespace Lab1a
                 }
                 Console.WriteLine();
                 Console.WriteLine("The sum of the array is : " + GetSum(array));
-                Console.WriteLine("Product = " + GetProduct(array, GetSum(array)));
+                Console.WriteLine(GetSum(array) + " / " + " = "  + GetProduct(array, GetSum(array)));
                 Console.WriteLine("Quotient = " + GetQuotient(num * GetSum(array)));
 
 
